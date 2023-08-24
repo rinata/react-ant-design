@@ -222,7 +222,7 @@ const Home: React.FC = () => {
                         </p>
                         <Row justify="space-between">
                           <Col>
-                            <span style={{fontSize: '18px', color: "#2F54EB"}}>{room.price}</span> <span>per hr</span>
+                            <span style={{fontWeight: 'bold', fontSize: '18px', color: "#2F54EB"}}>{room.price}</span> <span>per hr</span>
                             <Divider type="vertical" />
                             <UserOutlined /> <b>{room.capacity}</b>
                           </Col>
