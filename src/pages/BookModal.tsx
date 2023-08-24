@@ -1,4 +1,4 @@
-import { Button, Card, Col, Collapse, DatePicker, Descriptions, Divider, Image, Input, Modal, Row, Segmented, Space, TimePicker } from "antd"
+import { Button, Card, Col, Collapse, DatePicker, Descriptions, Divider, Image, Input, List, Modal, Row, Segmented, Space, TimePicker } from "antd"
 import React, { useState } from "react"
 import { SearchOutlined, DownOutlined, MinusOutlined, PlusOutlined,
   PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
@@ -68,6 +68,20 @@ const BookModal: React.FC = (props) => {
           <h3>Pricing</h3>
           <Descriptions items={pricingItems} />
           <Divider dashed style={{margin: '5px 0'}}/>
+          <h3>Amenities</h3>
+          <List itemLayout="vertical">
+            <List.Item
+              style={{padding: 0}}
+              colStyle={{margin: 0}}
+              actions={[
+                <p>Refreshments</p>,
+                <p>Smart TV</p>,
+                <p>Whiteboard</p>
+              ]} />
+          </List>
+          <Button type="link" size="small">
+            <PlusCircleOutlined /> Catering & other options
+          </Button>
         </Col>
         <Col xl={12}>
           <Card size='small' bodyStyle={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#F3F4FA', minHeight: '550px'}} headStyle={{border: 'none', background: '#F3F4FA'}} title="Booking Details">
