@@ -93,17 +93,17 @@ const BookModal: React.FC = (props) => {
             </Row>
             <Divider dashed style={{margin: '5px 0'}}/>
             {bookingNotes ?
-              <div>
-                <Button onClick={() => setBookingNotes(!bookingNotes)} type="link" size="small">
-                  <PlusCircleOutlined /> Booking Notes
-                </Button>
-              </div>
-              :
               <div style={{ marginBottom: '15px' }}>
                 <Button onClick={() => setBookingNotes(!bookingNotes)} style={{color: 'red'}} type="link" size="small">
                   <MinusCircleOutlined /> Remove Booking Notes
                 </Button>
                 <TextArea rows={2} placeholder="Add note here..." />
+              </div>
+              :
+              <div>
+                <Button onClick={() => setBookingNotes(!bookingNotes)} type="link" size="small">
+                  <PlusCircleOutlined /> Booking Notes
+                </Button>
               </div>
             }
 

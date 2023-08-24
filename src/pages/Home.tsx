@@ -20,16 +20,69 @@ const items: MenuProps['items'] = [
   { key: 4, label: <Button type="default"><ShoppingCartOutlined /> Sign In</Button> }
 ];
 
+const rooms = [
+  {
+    key: 1,
+    id: '1',
+    name: 'Room 01',
+    is_available: true,
+    available: 'All day (9:00am - 6:00pm)',
+    location: 'Pyrmont, Sydney',
+    price: '$12',
+    capacity: '20',
+    image: 'images/img_place2.png'
+  },
+  {
+    key: 2,
+    id: '2',
+    name: 'Room 02',
+    is_available: false,
+    available: 'Next available from 10:00am',
+    location: 'Pyrmont, Sydney',
+    price: '$12',
+    capacity: '20',
+    image: 'images/img_place3.png'
+  },
+  {
+    key: 3,
+    id: '3',
+    name: 'Room 03',
+    is_available: false,
+    available: 'Next available from 10:00am',
+    location: 'Pyrmont, Sydney',
+    price: '$12',
+    capacity: '20',
+    image: 'images/img_place4.png'
+  },
+  {
+    key: 4,
+    id: '4',
+    name: 'Room 04',
+    is_available: true,
+    available: 'All day (9:00am - 6:00pm)',
+    location: 'Pyrmont, Sydney',
+    price: '$12',
+    capacity: '20',
+    image: 'images/img_place5.png'
+  }
+]
+
 const Home: React.FC = () => {
   const [sort, setSort] = useState('unordered')
   const [formatHour, setFormatHour] = useState('am')
   const [payment, setPayment] = useState('hourly')
   const [modalBook, setModalBook] = useState(false)
+  const [modalSelected, setModalSelected] = useState('')
   const paymentList = [
     { label: 'Hourly', value: 'hourly' },
     { label: 'All Day', value: 'all_day' },
     { label: 'Half Day', value: 'half_day' }
   ]
+  const openModalBook = (modal, key) => {
+    const selectedModal = rooms.find((v) => v.key === key)?.id
+    setModalSelected(selectedModal ? selectedModal : '')
+    setModalBook(true)
+  }
   return (
     <Layout>
       <Header
@@ -110,40 +163,46 @@ const Home: React.FC = () => {
           </div>
           <div>
             <Row gutter={[12, 12]} >
-              <Col md={12} sm={24} xs={24}>
-                <Card size="small">
-                  <Row gutter={15}>
-                    <Col>
-                      <Image src="images/img_place2.png" alt="" />
-                    </Col>
-                    <Col span={16}>
-                      <Row justify="space-between">
-                        <Col>
-                          <b>Room 01</b>
-                        </Col>
-                        <Col>
-                          <Tag color="green">Available</Tag>
-                        </Col>
-                      </Row>
-                      <p>
-                        <ClockCircleOutlined /> All day (9:00am - 6:00pm)<br/>
-                        <SearchOutlined /> Pyrmont, Sydney
-                      </p>
-                      <Row justify="space-between">
-                        <Col>
-                          <span style={{fontSize: '18px'}}>$12</span> <span>per hr</span>
-                          <Divider type="vertical" />
-                          <UserOutlined /> <b>20</b>
-                        </Col>
-                        <Col>
-                          <Button onClick={() => setModalBook(true)} type="primary" size="middle">Book</Button>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Card>
-                <BookModal modalBook={modalBook} setModalBook={(e: boolean) => setModalBook(e)} />
-              </Col>
+              {rooms.map((room) =>
+                <Col key={room.key} md={12} sm={24} xs={24}>
+                  <Card size="small">
+                    <Row gutter={15}>
+                      <Col>
+                        <Image src={room.image} alt="" />
+                      </Col>
+                      <Col span={16}>
+                        <Row justify="space-between">
+                          <Col>
+                            <b>{room.name}</b>
+                          </Col>
+                          <Col>
+                            {room.is_available ?
+                              <Tag color="green">Available</Tag>
+                              :
+                              <Tag color="red">Occupied</Tag>
+                            }
+                          </Col>
+                        </Row>
+                        <p>
+                          <ClockCircleOutlined /> {room.available}<br/>
+                          <SearchOutlined /> {room.location}
+                        </p>
+                        <Row justify="space-between">
+                          <Col>
+                            <span style={{fontSize: '18px', color: "#2F54EB"}}>{room.price}</span> <span>per hr</span>
+                            <Divider type="vertical" />
+                            <UserOutlined /> <b>{room.capacity}</b>
+                          </Col>
+                          <Col>
+                            <Button disabled={!room.is_available} onClick={() => openModalBook(true, room.key)} type="primary" size="middle">Book</Button>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </Card>
+                </Col>
+              )}
+              <BookModal modalBook={modalBook} modalSelected={modalSelected} setModalBook={(e: boolean) => setModalBook(e)} />
             </Row>
           </div>
         </Content>
