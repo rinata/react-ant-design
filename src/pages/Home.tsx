@@ -210,9 +210,9 @@ const Home: React.FC = () => {
                           </Col>
                           <Col>
                             {room.is_available ?
-                              <Tag color="green">Available</Tag>
+                              <Tag style={{margin: 0}} color="green">Available</Tag>
                               :
-                              <Tag color="red">Occupied</Tag>
+                              <Tag style={{margin: 0}} color="red">Occupied</Tag>
                             }
                           </Col>
                         </Row>
