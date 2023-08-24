@@ -64,6 +64,39 @@ const rooms = [
     price: '$12',
     capacity: '20',
     image: 'images/img_place5.png'
+  },
+  {
+    key: 5,
+    id: '5',
+    name: 'Room 05',
+    is_available: true,
+    available: 'All day (9:00am - 6:00pm)',
+    location: 'Pyrmont, Sydney',
+    price: '$12',
+    capacity: '20',
+    image: 'images/img_place2.png'
+  },
+  {
+    key: 6,
+    id: '6',
+    name: 'Room 06',
+    is_available: false,
+    available: 'Next available from 10:00am',
+    location: 'Pyrmont, Sydney',
+    price: '$12',
+    capacity: '20',
+    image: 'images/img_place3.png'
+  },
+  {
+    key: 7,
+    id: '7',
+    name: 'Room 07',
+    is_available: false,
+    available: 'Next available from 10:00am',
+    location: 'Pyrmont, Sydney',
+    price: '$12',
+    capacity: '20',
+    image: 'images/img_place4.png'
   }
 ]
 
@@ -159,7 +192,7 @@ const Home: React.FC = () => {
             </Row>
           </Card>
           <div style={{ margin: '16px 0' }}>
-            Found 12 spaces
+            Found {rooms.length} spaces
           </div>
           <div>
             <Row gutter={[12, 12]} >
